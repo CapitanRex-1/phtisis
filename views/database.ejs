@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>База данных</title>
+  <link rel="shortcut icon" href="/views/img/favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap&subset=cyrillic" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/views/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/views/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="/views/css/pagination.css"/>
+  <link rel="stylesheet" href="/views/css/animate.css">
+</head>
+<body>
+  <ul id="dropdown1" class="dropdown-content">
+    <li><a href="/statistics">Статистика</a></li>
+    <li class="divider"></li>
+    <li><a href="/analytics">Аналитика</a></li>
+  </ul>
+
+  <nav class="amber accent-2" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo blue-text animated bounce"><img src="/views/img/logo.png" alt="logo" class="responsive-img"> Phtisis</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/database">База данных</a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Показатели<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a href="/archive">Архив</a></li>
+        <li><a href="/logout">Выйти</a></li>            
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="/database">База данных</a></li>
+        <li><a href="/statistics">Статистика</a></li>
+        <li><a href="/analytics">Аналитика</a></li>
+        <li><a href="/archive">Архив</a></li>
+        <li><a href="/logout">Выйти</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  
+  <main>
+    <div class="container">
+      <div class="section">
+        <div class="row ">
+          <div class="col s12">
+            <div class="col s6">
+                <h2 class="left-align">База данных</h2>
+            </div>
+          </div>
+          <div class="col s12" id="calcul">
+            <div class="col s6" id="amount">
+            </div>
+          </div>    
+        </div>
+      </div>
+    </div>
+
+    <div class="container" id="searching">
+      <div class="section">
+        <div class="row">
+          <div class="input-field col s10">
+            <i class="material-icons prefix">search</i>
+            <input required id="icon_prefix" type="text" class="validate">
+            <label for="icon_prefix">Введите полные инициалы для поиска...</label>
+          </div>
+          <div class="col s2">
+            <button class="btn btn-large red js-search" type="button" id="searched">Поиск
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="section">
+        <div class="row" id="posts">
+          <div class="col s12 center-align">
+            <div class="preloader-wrapper active">
+              <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="center-align" id="pagination-demo1"></div>       
+      </div>
+    </div>
+  </main>
+
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large blue">
+      <i class="large material-icons">menu_open</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating red" href="#"><i class="material-icons">arrow_upward</i></a></li>
+      <li><a class="btn-floating yellow darken-1 modal-trigger" href="#createForm"><i class="material-icons">add</i></a></li>
+    </ul>
+  </div>
+
+  <footer class="page-footer teal lighten-1">
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <h5 class="grey-text text-lighten-4">База данных сформирована из пациентов взятых на лечение с активным туберкулезом.</h5>
+          <p class="grey-text text-lighten-4">На данной странице можно просматреть всю базу, добавить новых поциентов, редактировать данные, а также отправлять пациентов в архив на основании исхода.</p>    
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container"> 
+        Copyright ©2020 All rights reserved | This sity is made by Roman Sinitsa
+      </div>
+    </div>
+  </footer>
+
+  <div id="createForm" class="modal animated fadeInDown">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <h4 class="modal-title">Информация о пациенте</h4>
+          <div class="row">
+            <div class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <label for="name">Инициалы Ф.И.О.: </label>
+                  <input placeholder="Оооо Ооооо Оооо" id="name" type="text" class="validate" required>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="input-field col s12">
+                  <select id="gender" name="gender">
+                  <option value="" disabled selected>Выберите пол</option>
+                  <option value="Мужской" class="validate" required>Мужской</option>
+                  <option value="Женский" class="validate" required>Женский</option>
+                  </select>
+                  <label for="gender">Пол:</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <label for="snils">СНИЛС: </label>
+                  <input placeholder="000-000-000-00" id="snils" type="text" class="validate" required>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <label for="passport">Паспорт: </label>
+                  <input placeholder="0000.000111" id="passport" type="text" class="validate" required>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <label for="city">Населенный пункт: </label>
+                  <input placeholder="р.п. Тальменка" id="city" type="text" class="validate" required>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <label for="adress">Адрес: </label>
+                  <input placeholder="ул. Партизанская 23" id="adress" type="text" class="validate" required>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <label for="date_was_born">Дата рождения: </label>
+                  <input placeholder="01.01.1999" id="date_was_born" type="text" class="validate" required>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <label for="age">Возраст: </label>
+                  <input placeholder="53" id="age" type="text" class="validate" required>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <label for="date_of_registration">Дата взятия на Д учет: </label>
+                  <input placeholder="12.12.2012" id="date_of_registration" type="text" class="validate" required>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <select id="social_status" name="social_status">
+                  <option value="" disabled selected>Выберите соц. статус</option>
+                  <option value="Работает" class="validate" required>Работает</option>
+                  <option value="Не работает" class="validate" required>Не работает</option>
+                  </select>
+                  <label for="social_status">Социальный статус:</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <select id="drugs" name="drugs">
+                  <option value="" disabled selected>Выберите наличие F10</option>
+                  <option value="Да" class="validate" required>Да</option>
+                  <option value="Нет" class="validate" required>Нет</option>
+                  </select>
+                  <label for="drugs">F10:</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <select id="B20_B24" name="B20_B24">
+                  <option value="" disabled selected>Выберите наличие В20-В24</option>
+                  <option value="Да" class="validate" required>Да</option>
+                  <option value="Нет" class="validate" required>Нет</option>
+                  </select>
+                  <label for="B20_B24">В20-В24:</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <select id="status" name="status">
+                  <option value="" disabled selected>Выберите статус выявления</option>
+                  <option value="Впервые выявлен" class="validate" required>Впервые выявлен</option>
+                  <option value="Хроник" class="validate" required>Хроник</option>
+                  </select>
+                  <label for="status">Статус выявления:</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <select id="group_DU" name="group_DU">
+                  <option value="" disabled selected>Выберите группу</option>
+                  <option value="I" class="validate" required>I</option>
+                  <option value="II A" class="validate" required>II A</option> 
+          <option value="II Б" class="validate" required>II Б</option>
+                  </select>
+                  <label for="group_DU">Группа ДУ:</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <select id="type_tub" name="type_tub">
+                  <option value="" disabled selected>Выберите вид туберкулеза</option>
+                  <option value="Легочный" class="validate" required>Легочный</option> 
+                  <option value="Органы дыхания" class="validate" required>Органы дыхания</option> 
+                  <option value="Вне легочный" class="validate" required>Вне легочный</option>
+                  </select>
+                  <label for="type_tub">Вид туберкулеза:</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <label for="diagnosis" class="active">Диагноз ТБС: </label>
+                  <input placeholder="Состояние ..." id="diagnosis" type="text" class="validate" required>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <select id="decay" name="decay">
+                  <option value="" disabled selected>Выберите наличие распада</option>
+                  <option value="Да" class="validate" required>Да</option>
+                  <option value="Нет" class="validate" required>Нет</option>
+                  </select>
+                  <label for="decay">Распад:</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <select id="MBT" name="MBT">
+                  <option value="" disabled selected>Выберите наличие МБТ</option>
+                  <option value="+" class="validate" required>+</option>
+                  <option value="-" class="validate" required>-</option>
+                  </select>
+                  <label for="MBT">МБТ:</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <select id="m_ck" name="m_ck">
+                  <option value="" disabled selected>Выберите наличие М/СК</option>
+                  <option value="Да" class="validate" required>Да</option>
+                  <option value="Нет" class="validate" required>Нет</option>
+                  </select>
+                  <label for="m_ck">М/СК:</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <select id="posev" name="posev">
+                  <option value="" disabled selected>Выберите наличие посева</option>
+                  <option value="Да" class="validate" required>Да</option>
+                  <option value="Нет" class="validate" required>Нет</option>
+                  </select>
+                  <label for="posev">Посев:</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <select id="MLU_SHLU" name="MLU_SHLU">
+                  <option value="" disabled selected>Выберите наличие МЛУ/ШЛУ</option>
+                  <option value="Да" class="validate" required>Да</option>
+                  <option value="Нет" class="validate" required>Нет</option>
+                  </select>
+                  <label for="MLU_SHLU">МЛУ/ШЛУ:</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <select id="result" name="result">
+                  <option value="" disabled selected>Выберите вид исхода</option>
+                  <option value="Выбыл за пределы края" class="validate" required>Выбыл за пределы края</option> 
+                  <option value="Умер от туб." class="validate" required>Умер от туб.</option> 
+                  <option value="Умер не от туб." class="validate" required>Умер не от туб.</option>
+                  <option value="Отрыв" class="validate" required>Отрыв</option>
+                  <option value="Эффективное лечение" class="validate" required>Эффективное лечение</option>
+                  <option value="Не эффективное лечение" class="validate" required>Не эффективное лечение</option>
+                  <option value="Продолжает лечение" class="validate" required>Продолжает лечение</option>
+                  </select>
+                  <label for="result">Исход:</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <label for="date_result" >Дата исхода: </label>
+                  <input placeholder="12.12.2012" id="date_result" type="text" class="validate" required>
+                </div>
+              </div>
+            </div>                       
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a class="waves-effect waves-light btn" id="createPost">Создать запись</a>
+          <a class="waves-effect waves-light btn modal-close" >Отмена</a>
+        </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/views/js/materialize.js"></script>
+  <script src="/views/js/database.js"></script>
+  <script src="/views/js/init.js"></script>
+  <script src="/views/js/jquery.formatter.min.js"></script> 
+  <script src="/views/js/pagination.js"></script> 
+  <script src="/views/js/wow.min.js"></script>
+  <script>
+    new WOW().init();
+  </script>
+  <script>
+    (function($){
+      $(function(){
+        $('#snils').formatter({
+          'pattern': '{{999}}-{{999}}-{{999}}-{{99}}',
+        });
+      });
+    })(jQuery);
+
+    (function($){
+      $(function(){
+        $('#passport').formatter({
+          'pattern': '{{9999}}.{{999999}}',
+        });
+      });
+    })(jQuery);
+
+    (function($){
+      $(function(){
+        $('#date_was_born').formatter({
+          'pattern': '{{99}}.{{99}}.{{9999}}',
+        });
+      });
+    })(jQuery);
+
+    (function($){
+      $(function(){
+        $('#age').formatter({
+          'pattern': '{{999}}',
+        });
+      });
+    })(jQuery);
+
+    (function($){
+      $(function(){
+        $('#date_of_registration').formatter({
+          'pattern': '{{99}}.{{99}}.{{9999}}',
+        });
+      });
+    })(jQuery);
+  </script>
+</body>
+</html>

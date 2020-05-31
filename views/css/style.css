@@ -1,0 +1,24 @@
+.bg_promo {
+    background: #edefee url('../img/banner-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right;
+    border-radius: 10px;
+}
+.card_rad {
+    border-radius: 10px 10px 0 0;
+}
+.profile-image-login {
+    height: 300px !important;
+}
+.login {
+    border-radius: 10px;
+}
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main {
+    flex: 1 0 auto;
+}

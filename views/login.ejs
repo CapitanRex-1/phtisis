@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Авторизация</title>
+  <link rel="shortcut icon" href="/views/img/favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap&subset=cyrillic" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/views/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="/views/css/animate.css">
+  <link rel="stylesheet" href="/views/css/login.css">
+</head>
+<body class="teal lighten-1">
+
+    <div class="row">
+		<div class="col s12 z-depth-4 card-panel login wow fadeIn" data-wow-delay="0.2s">
+		  <form action="/login" method="post">
+			<div class="row">
+			  <div class="input-field col s12 center">
+				<img src="/views/img/101-surgeon-1.png" alt="" class="circle responsive-img valign profile-image-login">
+				<p class="center login-form-text">Введите логин и пароль</p>
+			  </div>
+			</div>
+			<div class="row margin">
+			  <div class="input-field col s12">
+				<i class="material-icons prefix">person</i>
+				<input id="username" type="text" name="username">
+				<label for="username" class="center-align">Логин</label>
+			  </div>
+			</div>
+			<div class="row margin">
+			  <div class="input-field col s12">
+				<i class="material-icons prefix">lock</i>
+				<input id="password" type="password" name="password">
+				<label for="password">Пароль</label>
+			  </div>
+			</div>
+			<% if (answer) { %>
+			<div class="row">
+				<div class="input-field col s12 center">
+					<i class=" medium material-icons">warning</i>
+					<p class="center login-form-text"><%= answer %></p>
+				</div>
+			</div>
+			<% } %>
+			<div class="row">
+			  <div class="input-field col s12">
+				<button class="btn waves-effect waves-light col s12 amber accent-2" type="submit">Войти
+					<i class="material-icons left">login</i></i>
+				</button>
+			  </div>
+			</div>
+		  </form>
+		</div>
+	  </div>
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/views/js/materialize.js"></script>
+  <script src="/views/js/init.js"></script>
+  <script src="/views/js/wow.min.js"></script>
+  <script>
+    new WOW().init();
+  </script>
+</body>
+</html>

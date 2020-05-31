@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>Статистика</title>
+    <link rel="shortcut icon" href="/views/img/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap&subset=cyrillic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="/views/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/views/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link rel="stylesheet" href="/views/css/animate.css">
+</head>
+<body>
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a href="/statistics">Статистика</a></li>
+        <li class="divider"></li>
+        <li><a href="/analytics">Аналитика</a></li>
+      </ul>
+    
+      <nav class="amber accent-2" role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo blue-text animated bounce"><img src="/views/img/logo.png" alt="logo" class="responsive-img"> Phtisis</a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="/database">База данных</a></li>
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Показатели<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a href="/archive">Архив</a></li>
+            <li><a href="/logout">Выйти</a></li>            
+          </ul>
+    
+          <ul id="nav-mobile" class="sidenav">
+            <li><a href="/database">База данных</a></li>
+            <li><a href="/statistics">Статистика</a></li>
+            <li><a href="/analytics">Аналитика</a></li>
+            <li><a href="/archive">Архив</a></li>
+            <li><a href="/logout">Выйти</a></li>
+          </ul>
+          <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+      </nav>
+  
+    <main>
+        <div class="container">
+            <div class="section">
+                <div class="row ">
+                    <div class="col s12">
+                        <div class="col s6">
+                            <h2 class="left-align">Статистика</h2>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <ul class="collapsible popout">
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">filter_1</i>Пол:</div>
+                        <div class="collapsible-body">
+                            <div class="section">
+                                <div class="row ">
+                                    <div class="col s12">
+                                        <canvas id="chart-1"></canvas>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">filter_2</i>Статус:</div>
+                        <div class="collapsible-body">
+                            <div class="section">
+                                <div class="row ">
+                                    <div class="col s12">
+                                        <canvas id="chart-2"></canvas>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">filter_3</i>Группа ДУ:</div>
+                        <div class="collapsible-body">
+                            <div class="section">
+                                <div class="row ">
+                                    <div class="col s12">
+                                        <canvas id="chart-3"></canvas>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">filter_4</i>Вид туберкулеза:</div>
+                        <div class="collapsible-body">
+                            <div class="section">
+                                <div class="row ">
+                                    <div class="col s12">
+                                        <canvas id="chart-4"></canvas>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">filter_5</i>Наличие распада:</div>
+                        <div class="collapsible-body">
+                            <div class="section">
+                                <div class="row ">
+                                    <div class="col s12">                                           
+                                        <canvas id="chart-5"></canvas>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">filter_6</i>Бактерио выделение: </div>
+                        <div class="collapsible-body">
+                            <div class="section">
+                                <div class="row ">
+                                    <div class="col s12">
+                                        <div class="col s6">
+                                          <div class="col s12 m4 l3">
+                                            <h5>Наличие МБТ: </h5>
+                                          </div>
+                                          <div class="col s12 m8 l9">
+                                              <canvas id="chart-6_1"></canvas>
+                                          </div>
+                                        </div>
+                                        <div class="col s6">
+                                            <div class="col s12 m4 l3">
+                                              <h5>Лекарственная устойчивость (МЛУ/ШЛУ): </h5>
+                                            </div>
+                                            <div class="col s12 m8 l9">
+                                                <canvas id="chart-6_2"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">filter_7</i>Сопутствующие:</div>
+                        <div class="collapsible-body">
+                            <div class="section">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <div class="col s6">
+                                            <div class="col s12 m4 l3">
+                                              <h5>Наркология: </h5>
+                                            </div>
+                                            <div class="col s12 m8 l9">
+                                                <canvas id="chart-7_1"></canvas>
+                                            </div>
+                                        </div>
+                                        <div class="col s6">
+                                            <div class="col s12 m4 l3">
+                                              <h5>ВИЧ-инфекция: </h5>
+                                            </div>
+                                            <div class="col s12 m8 l9">
+                                                <canvas id="chart-7_2"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">filter_8</i>Соц. статус:</div>
+                        <div class="collapsible-body">
+                            <div class="section">
+                                <div class="row ">
+                                    <div class="col s12">
+                                        <canvas id="chart-8"></canvas>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">filter_9</i>Исход:</div>
+                        <div class="collapsible-body">
+                            <div class="section">
+                                <div class="row ">
+                                    <div class="col s12">
+                                        <canvas id="chart-9"></canvas>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="page-footer teal lighten-1">
+        <div class="container">
+          <div class="row">
+            <div class="col s12">
+                <h5 class="white-text">Интерактивная возможность оценить ситуацию в обслуживаемом районе по основным критериям.</h5>  
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+            Copyright ©2020 All rights reserved | This sity is made by Roman Sinitsa
+          </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="/views/js/materialize.js"></script>
+    <script src="/views/js/init.js"></script>
+    <script src="/views/js/statistics.js"></script>
+    <script src="/views/js/Chart.min.js"></script>
+</body>
+</html>
